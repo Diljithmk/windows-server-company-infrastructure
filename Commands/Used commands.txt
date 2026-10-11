@@ -1,0 +1,26 @@
+
+# 1. Check server name and domain
+hostname
+Get-ADDomain
+
+# 2. Verify Active Directory and DNS
+dcdiag
+nslookup diljithcompany.local
+
+# 3. Verify company users
+Get-ADUser -Filter * -SearchBase "OU=IT,OU=Departments,DC=diljithcompany,DC=local"
+Get-ADUser -Filter * -SearchBase "OU=HR,OU=Departments,DC=diljithcompany,DC=local"
+Get-ADUser -Filter * -SearchBase "OU=Finance,OU=Departments,DC=diljithcompany,DC=local"
+
+# 4. Verify department security groups
+Get-ADGroup IT_Team
+Get-ADGroup HR_Team
+Get-ADGroup Finance_Team
+
+# 5. Verify company folder shares
+Get-SmbShare | Where-Object {$_.Name -in @("IT","HR","Finance")} |
+Select-Object Name,Path
+
+# 6. Verify the company GPO
+Get-GPO -Name "Company-Security-Policy"
+gpresult /scope computer /r

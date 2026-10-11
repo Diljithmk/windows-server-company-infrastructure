@@ -1,0 +1,83 @@
+PROJECT 1: WINDOWS SERVER COMPANY INFRASTRUCTURE
+
+Server Name: DC01
+OS: Windows Server 2025
+Domain: diljithcompany.local
+
+1. ACTIVE DIRECTORY (AD DS)
+AD DS centrally manages users, computers, groups, and authentication.
+A Domain Controller authenticates domain users.
+
+2. ORGANIZATIONAL UNITS (OU)
+OU organizes users, groups, and computers.
+Departments OU:
+- IT
+- HR
+- Finance
+
+3. USERS AND GROUPS
+Users:
+- it.admin
+- hr.executive
+- finance.user
+
+Security Groups:
+- IT_Team
+- HR_Team
+- Finance_Team
+
+User = Individual account.
+Group = Collection of accounts used to manage permissions.
+
+4. DNS
+DNS translates names into IP addresses and helps computers locate Domain Controllers.
+
+Command:
+nslookup diljithcompany.local
+
+5. FILE SHARING
+Folder structure:
+C:\CompanyShares\IT
+C:\CompanyShares\HR
+C:\CompanyShares\Finance
+
+Share permissions = Control network share access.
+NTFS permissions = Control file and folder access.
+
+Best practice: Assign permissions to security groups and follow least privilege.
+
+6. GROUP POLICY (GPO)
+GPO centrally manages computer and user settings.
+GPO Name: Company-Security-Policy
+Configured setting: Disable the built-in Guest account.
+
+Commands:
+gpupdate /force
+gpresult /scope computer /r
+
+7. IMPORTANT COMMANDS
+hostname
+Get-ADDomain
+dcdiag
+nslookup diljithcompany.local
+Get-ADUser -Filter *
+Get-ADGroup -Filter *
+Get-SmbShare
+Get-GPO -Name "Company-Security-Policy"
+
+8. INTERVIEW QUICK NOTES
+- AD DS: Centrally manages domain identities and resources.
+- Domain Controller: Authenticates domain users.
+- OU: Organizes directory objects and scopes Group Policy.
+- User: Individual account.
+- Group: Collection of accounts for permissions.
+- DNS: Resolves names and helps locate Domain Controllers.
+- GPO: Applies centralized settings.
+- Share permissions: Control access over the network.
+- NTFS permissions: Control access to files and folders.
+
+PROJECT GOAL:
+Practise Windows Server administration, Active Directory, users, groups, DNS, file sharing, permissions, and Group Policy.
+
+NEXT TOPICS:
+DHCP, Windows Server Backup, FSRM quotas, and joining a Windows client to the domain.
